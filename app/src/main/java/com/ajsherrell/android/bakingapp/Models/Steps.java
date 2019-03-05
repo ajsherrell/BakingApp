@@ -3,46 +3,38 @@ package com.ajsherrell.android.bakingapp.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Steps implements Parcelable {
 
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("shortDescription")
     private String shortDescription;
+    @JsonProperty("description")
     private String description;
+    @JsonProperty("videoUrl")
     private String videoUrl = NO_VIDEO_URL_PROVIDED;
+    @JsonProperty("thumbnailUrl")
     private String thumbnailUrl = NO_THUMBNAIL_URL_PROVIDED;
 
     private static final String NO_VIDEO_URL_PROVIDED = null;
     private static final String NO_THUMBNAIL_URL_PROVIDED = null;
 
-    // 3 constructors for different scenarios:
-    public Steps(int id, String shortDescription, String description) {
-        this.id = id;
-        this.shortDescription = shortDescription;
-        this.description = description;
-    }
-
-    public Steps(int id, String shortDescription, String description, String videoUrl) {
-        this.id = id;
-        this.shortDescription = shortDescription;
-        this.description = description;
-        this.videoUrl = videoUrl;
-    }
-
-    public Steps(int id, String shortDescription, String description, String videoUrl,
-                 String thumbnailUrl) {
-        this.id = id;
-        this.shortDescription = shortDescription;
-        this.description = description;
-        this.videoUrl = videoUrl;
-        this.thumbnailUrl = thumbnailUrl;
+    public Steps() {
+        this.id = 0;
+        this.shortDescription = "";
+        this.description = "";
+        this.videoUrl = "";
+        this.thumbnailUrl = "";
     }
 
     protected Steps(Parcel in) {
-        id = in.readInt();
-        shortDescription = in.readString();
-        description = in.readString();
-        videoUrl = in.readString();
-        thumbnailUrl = in.readString();
+        this.id = in.readInt();
+        this.shortDescription = in.readString();
+        this.description = in.readString();
+        this.videoUrl = in.readString();
+        this.thumbnailUrl = in.readString();
     }
 
     public static final Creator<Steps> CREATOR = new Creator<Steps>() {
@@ -64,11 +56,11 @@ public class Steps implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeString(shortDescription);
-        parcel.writeString(description);
-        parcel.writeString(videoUrl);
-        parcel.writeString(thumbnailUrl);
+        parcel.writeInt(this.id);
+        parcel.writeString(this.shortDescription);
+        parcel.writeString(this.description);
+        parcel.writeString(this.videoUrl);
+        parcel.writeString(this.thumbnailUrl);
     }
 
     public int getId() {
@@ -97,5 +89,16 @@ public class Steps implements Parcelable {
 
     public boolean hasThumbnail() {
         return thumbnailUrl != NO_THUMBNAIL_URL_PROVIDED;
+    }
+
+    @Override
+    public String toString() {
+        return "Steps{" +
+                "id=" + id + "," + "\n" +
+                "shortDescription=" + shortDescription + "," + "\n" +
+                "description=" + description + "," + "\n" +
+                "videoUrl=" + videoUrl + "," + "\n" +
+                "thumbnailUrl=" + thumbnailUrl +
+                "}";
     }
 }

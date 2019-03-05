@@ -3,31 +3,40 @@ package com.ajsherrell.android.bakingapp.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bakery implements Parcelable {
 
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("ingredients")
     private List<Ingredients> ingredients;
+    @JsonProperty("steps")
     private List<Steps> steps;
+    @JsonProperty("servings")
     private int servings;
 
-    public Bakery(int id, String name, List<Ingredients> ingredients, List<Steps> steps,
-                  int servings) {
-        this.id = id;
-        this.name = name;
-        this.ingredients = ingredients;
-        this.steps = steps;
-        this.servings = servings;
+    public Bakery() {
+        this.id = 0;
+        this.name = "";
+        this.ingredients = new ArrayList<>();
+        this.steps = new ArrayList<>();
+        this.servings = 0;
     }
 
     protected Bakery(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
-        ingredients = (List<Ingredients>) in.readArrayList((ClassLoader) ingredients);
-        steps = (List<Steps>) in.readArrayList((ClassLoader) steps);
-        servings = in.readInt();
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.ingredients = new ArrayList<>();
+        in.readList(this.ingredients, Ingredients.class.getClassLoader());
+        this.steps = new ArrayList<>();
+        in.readList(this.steps, Steps.class.getClassLoader());
+        this.servings = in.readInt();
     }
 
     public static final Creator<Bakery> CREATOR = new Creator<Bakery>() {
@@ -49,11 +58,11 @@ public class Bakery implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeString(name);
-        parcel.writeList(ingredients);
-        parcel.writeList(steps);
-        parcel.writeInt(servings);
+        parcel.writeInt(this.id);
+        parcel.writeString(this.name);
+        parcel.writeList(this.ingredients);
+        parcel.writeList(this.steps);
+        parcel.writeInt(this.servings);
     }
 
     public int getId() {
@@ -74,5 +83,16 @@ public class Bakery implements Parcelable {
 
     public int getServings() {
         return servings;
+    }
+
+    @Override
+    public String toString() {
+        return "Bakery{" +
+                "id=" + id + "," + "\n" +
+                "name=" + name + "," + "\n" +
+                "ingredients=" + ingredients + "," + "\n" +
+                "steps=" + steps + "," + "\n" +
+                "servings=" + servings +
+                "}";
     }
 }

@@ -3,22 +3,27 @@ package com.ajsherrell.android.bakingapp.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Ingredients implements Parcelable {
 
+    @JsonProperty("quantity")
     private int quantity;
+    @JsonProperty("measure")
     private String measure;
+    @JsonProperty("ingredient")
     private String ingredient;
 
-    public Ingredients(int quantity, String measure, String ingredient) {
-        this.quantity = quantity;
-        this.measure = measure;
-        this.ingredient = ingredient;
+    public Ingredients() {
+        this.quantity = 0;
+        this.measure = "";
+        this.ingredient = "";
     }
 
     protected Ingredients(Parcel in) {
-        quantity = in.readInt();
-        measure = in.readString();
-        ingredient = in.readString();
+        this.quantity = in.readInt();
+        this.measure = in.readString();
+        this.ingredient = in.readString();
     }
 
     public static final Creator<Ingredients> CREATOR = new Creator<Ingredients>() {
@@ -40,9 +45,9 @@ public class Ingredients implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(quantity);
-        parcel.writeString(measure);
-        parcel.writeString(ingredient);
+        parcel.writeInt(this.quantity);
+        parcel.writeString(this.measure);
+        parcel.writeString(this.ingredient);
     }
 
     public int getQuantity() {
@@ -55,5 +60,14 @@ public class Ingredients implements Parcelable {
 
     public String getIngredient() {
         return ingredient;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredients{" +
+                "quantity=" + quantity + "," + "\n" +
+                "measure=" + measure + "," + "\n" +
+                "ingredient=" + ingredient +
+                "}";
     }
 }
