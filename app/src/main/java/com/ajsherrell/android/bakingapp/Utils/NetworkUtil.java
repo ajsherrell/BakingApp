@@ -2,50 +2,70 @@ package com.ajsherrell.android.bakingapp.Utils;
 
 import android.util.Log;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Scanner;
+import com.ajsherrell.android.bakingapp.Constants;
+import com.ajsherrell.android.bakingapp.Models.Bakery;
 
-public class NetworkUtil {
+import java.io.Serializable;
+import java.util.List;
 
-    // private constructor
-    private NetworkUtil() {}
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
+
+// Used resource: https://code.tutsplus.com/tutorials/getting-started-with-retrofit-2--cms-27792
+// Used resource: https://stackoverflow.com/questions/39874017/jacksonconverterfactory-in-retrofit-builder
+
+public class NetworkUtil implements Serializable {
 
     private static final String TAG = NetworkUtil.class.getSimpleName();
 
-    private static final String JSON_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
+    private static volatile NetworkUtil instance = new NetworkUtil();
 
-    public static URL createUrl() {
-        URL url = null;
-        try {
-            url = new URL(JSON_URL);
-        } catch (MalformedURLException e) {
-            Log.d(TAG, "createUrl: !!!" + url);
+    private NetworkApiService networkApiService;
+
+    private NetworkUtil() {
+        if(instance != null) {
+            throw new RuntimeException("getInstance() gets a single class instance");
         }
-        return url;
+
+        // implement retrofit & jackson converter factory here
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.JSON_URL)
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build();
+
+        networkApiService = retrofit.create(NetworkApiService.class);
     }
 
-    public static String makeHttpRequest(URL url) throws IOException {
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        try {
-            InputStream in = urlConnection.getInputStream();
-
-            Scanner scanner = new Scanner(in);
-            scanner.useDelimiter("\\A");
-
-            boolean hasInput = scanner.hasNext();
-            String response = null;
-            if (hasInput) {
-                response = scanner.next();
+    public static NetworkUtil getInstance() {
+        if (instance == null) {
+            synchronized (NetworkUtil.class) {
+                if (instance == null) instance = new NetworkUtil();
             }
-            scanner.close();
-            return response;
-        } finally {
-            urlConnection.disconnect();
         }
+        return instance;
+    }
+
+    public void getBakery(final NetworkApiCallback<List<Bakery>> networkApiCallback) {
+        networkApiService.getBakery().enqueue(new Callback<List<Bakery>>(){
+            @Override
+            public void onResponse(Call<List<Bakery>> call, Response<List<Bakery>> response) {
+                networkApiCallback.onResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Bakery>> call, Throwable t) {
+                if (call.isCanceled()) {
+                    Log.d(TAG, "onFailure: !!! this was cancelled" + networkApiCallback);
+                    networkApiCallback.onCancel();
+                } else {
+                    Log.d(TAG, "onFailure: !!! was not cancelled");
+                    networkApiCallback.onResponse(null);
+                }
+            }
+        });
     }
 
 }

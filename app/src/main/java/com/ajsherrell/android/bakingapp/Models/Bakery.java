@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+// used resource: https://github.com/FasterXML/jackson
+
 public class Bakery implements Parcelable {
 
     @JsonProperty("id")

@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// used resource: https://github.com/FasterXML/jackson
+
 public class Ingredients implements Parcelable {
 
     @JsonProperty("quantity")
