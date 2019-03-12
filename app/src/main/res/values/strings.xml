@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BakingApp</string>
+
+    // Serving Size
+    <string name="serves">Serves: </string>
+
+    // no internet connection or no data loaded
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="no_bakery_content">No bakery content</string>
+
 </resources>

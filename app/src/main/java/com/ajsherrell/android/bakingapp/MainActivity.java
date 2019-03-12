@@ -15,17 +15,27 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.ajsherrell.android.bakingapp.Models.Bakery;
+
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BakeryFragment.OnBakeryClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
     }
+
+    @Override
+    public void onBakerySelected(Bakery bakery) {
+        Intent intent = new Intent(this, BakeryActivity.class);
+        intent.putExtra(BakeryActivity.BAKERY_KEY, bakery);
+        startActivity(intent);
+    }
+
 }

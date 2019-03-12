@@ -2,6 +2,7 @@ package com.ajsherrell.android.bakingapp.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.TextView;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
