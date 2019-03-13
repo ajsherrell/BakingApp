@@ -79,7 +79,7 @@ public class StepsFragment extends Fragment {
         stepsTv.setText(steps.getDescription());
 
         // check if thumbnail exists
-        if (!steps.getThumbnailUrl().isEmpty()) {
+        if (steps.hasThumbnail()) {
             Glide.with(this)
                     .load(steps.getThumbnailUrl())
                     .into(stepThumbnail);
@@ -92,7 +92,7 @@ public class StepsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (!TextUtils.isEmpty(steps.getVideoUrl())) startPlay(Uri.parse(steps.getVideoUrl()));
+        if (steps.hasVideo()) startPlay(Uri.parse(steps.getVideoUrl()));
     }
 
     @Override

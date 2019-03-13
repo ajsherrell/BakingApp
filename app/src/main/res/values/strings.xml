@@ -8,4 +8,11 @@
     <string name="no_internet_connection">No internet connection</string>
     <string name="no_bakery_content">No bakery content</string>
 
+    //manifest names
+    <string name="bakery">Bakery</string>
+    <string name="steps">Steps</string>
+
+    //widget
+    <string name="widget">Widget</string>
+
 </resources>
