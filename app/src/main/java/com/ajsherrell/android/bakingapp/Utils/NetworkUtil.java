@@ -21,7 +21,7 @@ public class NetworkUtil implements Serializable {
 
     private static final String TAG = NetworkUtil.class.getSimpleName();
 
-    private static volatile NetworkUtil instance = new NetworkUtil();
+    private static NetworkUtil instance = new NetworkUtil();
 
     private NetworkApiService networkApiService;
 

@@ -14,5 +14,8 @@
 
     //widget
     <string name="widget">Widget</string>
+    <string name="widget_key">widget_key</string>
+    <string name="add_widget">Add Widget!</string>
+    <string name="widget_added">Widget Added!</string>
 
 </resources>

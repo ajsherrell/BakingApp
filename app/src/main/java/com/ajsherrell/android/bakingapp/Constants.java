@@ -1,7 +1,10 @@
 package com.ajsherrell.android.bakingapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+
+import com.ajsherrell.android.bakingapp.Models.Bakery;
 
 public class Constants {
 
@@ -20,4 +23,28 @@ public class Constants {
         }
     }
 
+    // use shared preferences for widget
+    public static class WidgetPref {
+
+        public static final String PREFERENCE_NAME = "preference_name";
+
+        public static void saveBake(Context context, Bakery bakery) {
+            SharedPreferences.Editor widgetPrefs = context.getSharedPreferences(PREFERENCE_NAME,
+                    Context.MODE_PRIVATE).edit();
+            widgetPrefs.putString(context.getString(R.string.widget_key), bakery.toString());
+            widgetPrefs.apply();
+        }
+
+        public static Bakery loadBake(Context context) {
+            Bakery bakery = null;
+            SharedPreferences widgetPrefs = context.getSharedPreferences(PREFERENCE_NAME,
+                    Context.MODE_PRIVATE);
+            String key = widgetPrefs.getString(context.getString(R.string.widget_key), "");
+            if (key != null) {
+                bakery.toString();
+            }
+            return bakery;
+        }
+
+    }
 }

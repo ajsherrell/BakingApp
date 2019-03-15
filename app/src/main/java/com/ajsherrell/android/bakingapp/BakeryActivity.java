@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.ajsherrell.android.bakingapp.Adapters.StepsAdapter;
 import com.ajsherrell.android.bakingapp.Models.Bakery;
+import com.ajsherrell.android.bakingapp.Widget.WidgetService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,7 +85,24 @@ public class BakeryActivity extends AppCompatActivity {
         }
     }
 
-    // todo widget menu
+    // menu for widget
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.bakery_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_widget) {
+            WidgetService.updateWidget(this, bakery);
+            Toast.makeText(getApplicationContext(), String.format(getString(R.string.widget_added)), Toast.LENGTH_LONG).show();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
 }
 
 

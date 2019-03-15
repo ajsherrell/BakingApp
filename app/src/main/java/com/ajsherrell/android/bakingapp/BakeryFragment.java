@@ -22,6 +22,7 @@ import com.ajsherrell.android.bakingapp.Adapters.BakeryAdapter;
 import com.ajsherrell.android.bakingapp.Models.Bakery;
 import com.ajsherrell.android.bakingapp.Utils.NetworkApiCallback;
 import com.ajsherrell.android.bakingapp.Utils.NetworkUtil;
+import com.ajsherrell.android.bakingapp.Widget.WidgetService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,7 +162,10 @@ public class BakeryFragment extends Fragment {
                                 clickListener.onBakerySelected(bakeryList.get(position));
                             }
                         }));
-                        // todo default bakery widget
+                        // default for widget
+                        if (Constants.WidgetPref.loadBake(getActivity().getApplicationContext())== null) {
+                            WidgetService.updateWidget(getActivity(), bakeryList.get(0));
+                        }
                     } else {
                         noContent.setVisibility(View.VISIBLE);
                         noContent.setText(getString(R.string.no_bakery_content));
