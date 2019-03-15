@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ajsherrell.android.bakingapp.Models.Steps;
-import com.bumptech.glide.Glide;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
@@ -27,6 +25,7 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,8 +79,9 @@ public class StepsFragment extends Fragment {
 
         // check if thumbnail exists
         if (steps.hasThumbnail()) {
-            Glide.with(this)
+            Picasso.with(getContext())
                     .load(steps.getThumbnailUrl())
+                    .placeholder(R.drawable.ic_action_name)
                     .into(stepThumbnail);
             stepThumbnail.setVisibility(view.VISIBLE);
         }

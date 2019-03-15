@@ -12,6 +12,7 @@ import com.ajsherrell.android.bakingapp.Constants;
 import com.ajsherrell.android.bakingapp.Models.Bakery;
 import com.ajsherrell.android.bakingapp.R;
 import com.ajsherrell.android.bakingapp.ViewHolders.BakeryViewHolder;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -41,6 +42,13 @@ public class BakeryAdapter extends RecyclerView.Adapter<BakeryViewHolder> {
     public void onBindViewHolder(@NonNull BakeryViewHolder bakeryViewHolder, final int i) {
         bakeryViewHolder.mBakeryNameTv.setText(bakery.get(i).getName());
         bakeryViewHolder.mServingsTv.setText(context.getString(R.string.serves) + bakery.get(i).getServings());
+
+        if (bakery.get(i).hasImage()) {
+            Picasso.with(context)
+                    .load(bakery.get(i).getImage())
+                    .placeholder(R.drawable.ic_action_name)
+                    .into(bakeryViewHolder.bakeryImage);
+        }
 
         bakeryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

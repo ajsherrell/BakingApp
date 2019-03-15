@@ -23,6 +23,10 @@ public class Bakery implements Parcelable {
     private List<Steps> steps;
     @JsonProperty("servings")
     private int servings;
+    @JsonProperty("image")
+    private String image = NO_IMAGE_PROVIDED;
+
+    private static final String NO_IMAGE_PROVIDED = null;
 
     public Bakery() {
         this.id = 0;
@@ -30,6 +34,7 @@ public class Bakery implements Parcelable {
         this.ingredients = new ArrayList<>();
         this.steps = new ArrayList<>();
         this.servings = 0;
+        this.image = "";
     }
 
     protected Bakery(Parcel in) {
@@ -40,6 +45,7 @@ public class Bakery implements Parcelable {
         this.steps = new ArrayList<>();
         in.readList(this.steps, Steps.class.getClassLoader());
         this.servings = in.readInt();
+        this.image = in.readString();
     }
 
     public static final Creator<Bakery> CREATOR = new Creator<Bakery>() {
@@ -66,6 +72,7 @@ public class Bakery implements Parcelable {
         parcel.writeList(this.ingredients);
         parcel.writeList(this.steps);
         parcel.writeInt(this.servings);
+        parcel.writeString(this.image);
     }
 
     public int getId() {
@@ -86,6 +93,14 @@ public class Bakery implements Parcelable {
 
     public int getServings() {
         return servings;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public boolean hasImage() {
+        return image != NO_IMAGE_PROVIDED;
     }
 
     @Override
