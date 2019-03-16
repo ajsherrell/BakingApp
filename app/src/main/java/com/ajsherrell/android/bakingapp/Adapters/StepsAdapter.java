@@ -34,20 +34,20 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull StepsViewHolder viewHolder, final int i) {
             StepsViewHolder stepsViewHolder = (StepsViewHolder) viewHolder;
-            stepsViewHolder.mStepsIdNumberTv.setText(String.valueOf(i - 1) + ".");
-            stepsViewHolder.mStepsShortDescriptionTv.setText(bakery.getSteps().get(i - 1).getShortDescription());
+            stepsViewHolder.mStepsIdNumberTv.setText(String.valueOf(i+1) + ".");
+            stepsViewHolder.mStepsShortDescriptionTv.setText(bakery.getSteps().get(i).getShortDescription());
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (onItemClickListener != null) onItemClickListener.onItemClick(i - 1);
+                    if (onItemClickListener != null) onItemClickListener.onItemClick(i);
                 }
             });
     }
 
     @Override
     public int getItemCount() {
-        return bakery.getSteps().size() + 1;
+        return bakery.getSteps().size();
     }
 
 }

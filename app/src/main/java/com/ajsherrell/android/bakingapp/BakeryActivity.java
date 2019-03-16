@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.ajsherrell.android.bakingapp.Adapters.IngredientsAdapter;
 import com.ajsherrell.android.bakingapp.Adapters.StepsAdapter;
 import com.ajsherrell.android.bakingapp.Models.Bakery;
+import com.ajsherrell.android.bakingapp.Models.Ingredients;
 import com.ajsherrell.android.bakingapp.Widget.WidgetService;
 
 import butterknife.BindView;
@@ -22,12 +25,19 @@ public class BakeryActivity extends AppCompatActivity {
 
     //binders
     @BindView(R.id.bakery_step_list)
-    RecyclerView recyclerView;
+    RecyclerView bakeryRecyclerView;
+
+    @BindView(R.id.ingredients_tv)
+    RecyclerView ingredientsRecyclerView;
+
+    private Bakery bakery;
 
     // is two pane?
     private boolean twoPane;
 
-    private Bakery bakery;
+    IngredientsAdapter ingredientsAdapter;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,12 +70,17 @@ public class BakeryActivity extends AppCompatActivity {
     }
 
     private void setRecyclerView() {
-        recyclerView.setAdapter(new StepsAdapter(bakery, new Constants.ClickListener.OnItemClickListener() {
+        LinearLayoutManager bakeryLayoutManager = new LinearLayoutManager(this);
+        bakeryRecyclerView.setLayoutManager(bakeryLayoutManager);
+        bakeryRecyclerView.setAdapter(new StepsAdapter(bakery, new Constants.ClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 makeStep(position);
             }
         }));
+        LinearLayoutManager ingredientsLayoutManager = new LinearLayoutManager(this);
+        ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
+        ingredientsRecyclerView.setAdapter(new IngredientsAdapter(getApplicationContext(), (Ingredients) bakery.getIngredients()));
     }
 
     private void makeStep(int position) {

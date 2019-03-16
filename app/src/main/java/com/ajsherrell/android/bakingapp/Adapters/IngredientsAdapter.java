@@ -19,19 +19,17 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
     private static final String TAG = IngredientsViewHolder.class.getSimpleName();
     private Context context;
     private Ingredients ingredients;
-    private Constants.ClickListener.OnItemClickListener onItemClickListener;
 
-    public IngredientsAdapter(Context context, Ingredients ingredients, Constants.ClickListener.OnItemClickListener onItemClickListener) {
+    public IngredientsAdapter(Context context, Ingredients ingredients) {
         this.context = context;
         this.ingredients = ingredients;
-        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
     @Override
     public IngredientsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.ingredients_list_item, viewGroup, false);
+                .inflate(R.layout.activity_bakery, viewGroup, false);
         return new IngredientsViewHolder(view);
     }
 

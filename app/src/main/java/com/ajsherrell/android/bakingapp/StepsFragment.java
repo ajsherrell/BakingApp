@@ -78,12 +78,11 @@ public class StepsFragment extends Fragment {
         stepsTv.setText(steps.getDescription());
 
         // check if thumbnail exists
-        if (steps.hasThumbnail()) {
+        if (!steps.hasThumbnail()) {
             Picasso.with(getContext())
                     .load(steps.getThumbnailUrl())
                     .placeholder(R.drawable.ic_action_name)
                     .into(stepThumbnail);
-            stepThumbnail.setVisibility(view.VISIBLE);
         }
 
         return view;
