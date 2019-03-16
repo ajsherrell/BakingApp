@@ -43,7 +43,7 @@ public class BakeryAdapter extends RecyclerView.Adapter<BakeryViewHolder> {
         bakeryViewHolder.mBakeryNameTv.setText(bakery.get(i).getName());
         bakeryViewHolder.mServingsTv.setText(context.getString(R.string.serves) + bakery.get(i).getServings());
 
-        if (bakery.get(i).hasImage()) {
+        if (!bakery.get(i).hasImage()) {
             Picasso.with(context)
                     .load(bakery.get(i).getImage())
                     .placeholder(R.drawable.ic_action_name)

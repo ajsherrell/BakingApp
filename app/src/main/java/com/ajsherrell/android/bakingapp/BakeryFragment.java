@@ -35,6 +35,8 @@ public class BakeryFragment extends Fragment {
 
     private static final String TAG = BakeryFragment.class.getSimpleName();
 
+    private AppTest appTest;
+
     private static String BAKERY_KEY = "bakery_key";
 
     @BindView(R.id.bakery_recycler_view)
@@ -73,6 +75,10 @@ public class BakeryFragment extends Fragment {
 
         noContent.setVisibility(View.VISIBLE);
         setRecyclerView();
+
+        //idling resource
+        appTest = (AppTest) getActivity().getApplicationContext();
+        appTest.setIdleState(false);
 
         if (savedInstanceState != null && savedInstanceState.containsKey(BAKERY_KEY)) {
             bakeryList = savedInstanceState.getParcelableArrayList(BAKERY_KEY);
@@ -130,6 +136,8 @@ public class BakeryFragment extends Fragment {
         boolean isLoaded = bakeryList != null && bakeryList.size() > 0;
         bakeryRecyclerView.setVisibility(isLoaded ? View.VISIBLE : View.GONE);
         noContent.setVisibility(isLoaded ? View.GONE : View.VISIBLE);
+
+        appTest.setIdleState(true);
     }
 
     @Override

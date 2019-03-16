@@ -92,7 +92,11 @@ public class StepsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (steps.hasVideo()) startPlay(Uri.parse(steps.getVideoUrl()));
+        if (!steps.hasVideo()) {
+            startPlay(Uri.parse(steps.getVideoUrl()));
+        } else {
+            stepsTv.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

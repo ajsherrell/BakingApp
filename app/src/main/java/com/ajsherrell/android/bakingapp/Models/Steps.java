@@ -15,10 +15,10 @@ public class Steps implements Parcelable {
     private String shortDescription;
     @JsonProperty("description")
     private String description;
-    @JsonProperty("videoUrl")
-    private String videoUrl = NO_VIDEO_URL_PROVIDED;
-    @JsonProperty("thumbnailUrl")
-    private String thumbnailUrl = NO_THUMBNAIL_URL_PROVIDED;
+    @JsonProperty("videoURL")
+    private String videoURL = NO_VIDEO_URL_PROVIDED;
+    @JsonProperty("thumbnailURL")
+    private String thumbnailURL = NO_THUMBNAIL_URL_PROVIDED;
 
     private static final String NO_VIDEO_URL_PROVIDED = null;
     private static final String NO_THUMBNAIL_URL_PROVIDED = null;
@@ -27,16 +27,16 @@ public class Steps implements Parcelable {
         this.id = 0;
         this.shortDescription = "";
         this.description = "";
-        this.videoUrl = "";
-        this.thumbnailUrl = "";
+        this.videoURL = "";
+        this.thumbnailURL = "";
     }
 
     protected Steps(Parcel in) {
         this.id = in.readInt();
         this.shortDescription = in.readString();
         this.description = in.readString();
-        this.videoUrl = in.readString();
-        this.thumbnailUrl = in.readString();
+        this.videoURL = in.readString();
+        this.thumbnailURL = in.readString();
     }
 
     public static final Creator<Steps> CREATOR = new Creator<Steps>() {
@@ -61,8 +61,8 @@ public class Steps implements Parcelable {
         parcel.writeInt(this.id);
         parcel.writeString(this.shortDescription);
         parcel.writeString(this.description);
-        parcel.writeString(this.videoUrl);
-        parcel.writeString(this.thumbnailUrl);
+        parcel.writeString(this.videoURL);
+        parcel.writeString(this.thumbnailURL);
     }
 
     public int getId() {
@@ -78,19 +78,19 @@ public class Steps implements Parcelable {
     }
 
     public String getVideoUrl() {
-        return videoUrl;
+        return videoURL;
     }
 
     public String getThumbnailUrl() {
-        return thumbnailUrl;
+        return thumbnailURL;
     }
 
     public boolean hasVideo() {
-        return videoUrl != NO_VIDEO_URL_PROVIDED;
+        return videoURL != NO_VIDEO_URL_PROVIDED;
     }
 
     public boolean hasThumbnail() {
-        return thumbnailUrl != NO_THUMBNAIL_URL_PROVIDED;
+        return thumbnailURL != NO_THUMBNAIL_URL_PROVIDED;
     }
 
     @Override
@@ -99,8 +99,8 @@ public class Steps implements Parcelable {
                 "id=" + id + "," + "\n" +
                 "shortDescription=" + shortDescription + "," + "\n" +
                 "description=" + description + "," + "\n" +
-                "videoUrl=" + videoUrl + "," + "\n" +
-                "thumbnailUrl=" + thumbnailUrl +
+                "videoUrl=" + videoURL + "," + "\n" +
+                "thumbnailUrl=" + thumbnailURL +
                 "}";
     }
 }

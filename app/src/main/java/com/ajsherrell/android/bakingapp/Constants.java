@@ -36,7 +36,7 @@ public class Constants {
         }
 
         public static Bakery loadBake(Context context) {
-            Bakery bakery = null;
+            Bakery bakery = new Bakery();
             SharedPreferences widgetPrefs = context.getSharedPreferences(PREFERENCE_NAME,
                     Context.MODE_PRIVATE);
             String key = widgetPrefs.getString(context.getString(R.string.widget_key), "");
