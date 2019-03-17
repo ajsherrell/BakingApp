@@ -3,6 +3,7 @@ package com.ajsherrell.android.bakingapp.Adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class BakeryAdapter extends RecyclerView.Adapter<BakeryViewHolder> {
         bakeryViewHolder.mBakeryNameTv.setText(bakery.get(i).getName());
         bakeryViewHolder.mServingsTv.setText(context.getString(R.string.serves) + bakery.get(i).getServings());
 
-        if (!bakery.get(i).hasImage()) {
+        if (!TextUtils.isEmpty(bakery.get(i).getImage())) {
             Picasso.with(context)
                     .load(bakery.get(i).getImage())
                     .placeholder(R.drawable.ic_action_name)

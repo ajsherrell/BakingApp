@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,7 +79,7 @@ public class StepsFragment extends Fragment {
         stepsTv.setText(steps.getDescription());
 
         // check if thumbnail exists
-        if (!steps.hasThumbnail()) {
+        if (!TextUtils.isEmpty(steps.getThumbnailUrl())) {
             Picasso.with(getContext())
                     .load(steps.getThumbnailUrl())
                     .placeholder(R.drawable.ic_action_name)
@@ -91,7 +92,7 @@ public class StepsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (!steps.hasVideo()) {
+        if (!TextUtils.isEmpty(steps.getVideoUrl())) {
             startPlay(Uri.parse(steps.getVideoUrl()));
         } else {
             stepsTv.setVisibility(View.VISIBLE);

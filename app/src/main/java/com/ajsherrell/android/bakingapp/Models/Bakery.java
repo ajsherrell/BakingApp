@@ -24,9 +24,8 @@ public class Bakery implements Parcelable {
     @JsonProperty("servings")
     private int servings;
     @JsonProperty("image")
-    private String image = NO_IMAGE_PROVIDED;
+    private String image;
 
-    private static final String NO_IMAGE_PROVIDED = null;
 
     public Bakery() {
         this.id = 0;
@@ -97,10 +96,6 @@ public class Bakery implements Parcelable {
 
     public String getImage() {
         return image;
-    }
-
-    public boolean hasImage() {
-        return image != NO_IMAGE_PROVIDED;
     }
 
     @Override

@@ -26,6 +26,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        style="@style/steps"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         app:fontFamily="serif-monospace"
         app:layout_constrainedHeight="false"

@@ -80,7 +80,7 @@ public class BakeryActivity extends AppCompatActivity {
         }));
         LinearLayoutManager ingredientsLayoutManager = new LinearLayoutManager(this);
         ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
-        ingredientsRecyclerView.setAdapter(new IngredientsAdapter(getApplicationContext(), (Ingredients) bakery.getIngredients()));
+        ingredientsRecyclerView.setAdapter(ingredientsAdapter);
     }
 
     private void makeStep(int position) {

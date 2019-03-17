@@ -16,12 +16,10 @@ public class Steps implements Parcelable {
     @JsonProperty("description")
     private String description;
     @JsonProperty("videoURL")
-    private String videoURL = NO_VIDEO_URL_PROVIDED;
+    private String videoURL;
     @JsonProperty("thumbnailURL")
-    private String thumbnailURL = NO_THUMBNAIL_URL_PROVIDED;
+    private String thumbnailURL;
 
-    private static final String NO_VIDEO_URL_PROVIDED = null;
-    private static final String NO_THUMBNAIL_URL_PROVIDED = null;
 
     public Steps() {
         this.id = 0;
@@ -83,14 +81,6 @@ public class Steps implements Parcelable {
 
     public String getThumbnailUrl() {
         return thumbnailURL;
-    }
-
-    public boolean hasVideo() {
-        return videoURL != NO_VIDEO_URL_PROVIDED;
-    }
-
-    public boolean hasThumbnail() {
-        return thumbnailURL != NO_THUMBNAIL_URL_PROVIDED;
     }
 
     @Override
