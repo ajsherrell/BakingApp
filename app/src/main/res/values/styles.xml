@@ -8,11 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     
-    <style name="TextAppearance.AppCompat.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+    <style name="bakeryList">
         <item name="fontFamily">serif-monospace</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">40sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

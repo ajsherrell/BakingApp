@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajsherrell.android.bakingapp.Constants;
 import com.ajsherrell.android.bakingapp.Models.Ingredients;
 import com.ajsherrell.android.bakingapp.R;
 import com.ajsherrell.android.bakingapp.ViewHolders.IngredientsViewHolder;
@@ -29,7 +28,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
     @Override
     public IngredientsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.activity_bakery, viewGroup, false);
+                .inflate(R.layout.steps_list_item, viewGroup, false);
         return new IngredientsViewHolder(view);
     }
 
