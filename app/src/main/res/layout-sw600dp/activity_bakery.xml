@@ -7,22 +7,30 @@
 
     <!--two pane layout-->
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/bakery_step_list"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/bakery_step_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/ingredients_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ingredients_list_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption">
+
+            <include layout="@layout/ingredients_list"/>
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.NestedScrollView>
 
     <FrameLayout
         android:id="@+id/tablet_container"

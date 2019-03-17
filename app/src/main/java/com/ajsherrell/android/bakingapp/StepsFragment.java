@@ -40,7 +40,7 @@ public class StepsFragment extends Fragment {
 
     private long currentPosition = 0;
     private boolean playWhenReady = true;
-
+    
     @BindView(R.id.steps_tv)
     TextView stepsTv;
 

@@ -27,11 +27,11 @@ public class BakeryActivity extends AppCompatActivity {
     @BindView(R.id.bakery_step_list)
     RecyclerView bakeryRecyclerView;
 
-    @BindView(R.id.ingredients_list)
+    @BindView(R.id.ingredients_list_rv)
     RecyclerView ingredientsRecyclerView;
 
     private Bakery bakery;
-    private Ingredients ingredients;
+    public Ingredients ingredients;
 
     // is two pane?
     private boolean twoPane;
@@ -41,9 +41,9 @@ public class BakeryActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey(BAKERY_KEY)) {
-            bakery = bundle.getParcelable(BAKERY_KEY);
+        Bundle bakeryBundle = getIntent().getExtras();
+        if (bakeryBundle != null && bakeryBundle.containsKey(BAKERY_KEY)) {
+            bakery = bakeryBundle.getParcelable(BAKERY_KEY);
         } else {
             Toast.makeText(getApplicationContext(), "Bakery failure!", Toast.LENGTH_LONG).show();
             finish();
