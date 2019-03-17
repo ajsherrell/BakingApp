@@ -20,15 +20,11 @@
             android:layout_width="wrap_content"
             style="@style/steps"/>
 
-        <android.support.v7.widget.RecyclerView
+        <TextView
             android:id="@+id/ingredients_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             app:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 

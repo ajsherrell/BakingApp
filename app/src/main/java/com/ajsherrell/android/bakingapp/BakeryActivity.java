@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.ajsherrell.android.bakingapp.Adapters.IngredientsAdapter;
 import com.ajsherrell.android.bakingapp.Adapters.StepsAdapter;
 import com.ajsherrell.android.bakingapp.Models.Bakery;
+import com.ajsherrell.android.bakingapp.Models.Ingredients;
 import com.ajsherrell.android.bakingapp.Widget.WidgetService;
 
 import butterknife.BindView;
@@ -26,16 +27,14 @@ public class BakeryActivity extends AppCompatActivity {
     @BindView(R.id.bakery_step_list)
     RecyclerView bakeryRecyclerView;
 
-    @BindView(R.id.ingredients_tv)
+    @BindView(R.id.ingredients_list)
     RecyclerView ingredientsRecyclerView;
 
     private Bakery bakery;
+    private Ingredients ingredients;
 
     // is two pane?
     private boolean twoPane;
-
-    IngredientsAdapter ingredientsAdapter;
-
 
 
     @Override
@@ -79,7 +78,7 @@ public class BakeryActivity extends AppCompatActivity {
         }));
         LinearLayoutManager ingredientsLayoutManager = new LinearLayoutManager(this);
         ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
-        ingredientsRecyclerView.setAdapter(ingredientsAdapter);
+        ingredientsRecyclerView.setAdapter(new IngredientsAdapter(getApplicationContext(), ingredients));
     }
 
     private void makeStep(int position) {

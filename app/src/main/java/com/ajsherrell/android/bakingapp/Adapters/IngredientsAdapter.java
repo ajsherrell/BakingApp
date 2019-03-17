@@ -34,18 +34,24 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
 
     @Override
     public void onBindViewHolder(@NonNull IngredientsViewHolder ingredientsViewHolder, final int i) {
+
+        ingredientsViewHolder.mIngredientsTv.setText(ingredientsString());
+    }
+
+    public StringBuilder ingredientsString() {
+        String ingredientString = ingredients.getIngredient();
         String measure = ingredients.getMeasure();
         int quantity = ingredients.getQuantity();
         String measurement = trueMeasure(measure, quantity);
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format(Locale.getDefault(), ingredients.getIngredient(), measurement));
+        stringBuilder.append(String.format(Locale.getDefault(), ingredientString, measurement));
         stringBuilder.append("\n");
-        ingredientsViewHolder.mIngredientsTv.setText(stringBuilder);
+        return stringBuilder;
     }
 
     @Override
     public int getItemCount() {
-        return ingredients.hashCode();
+        return 0;
     }
 
     private String trueMeasure(String measure, int quantity) {
