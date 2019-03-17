@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.ajsherrell.android.bakingapp.Adapters.IngredientsAdapter;
 import com.ajsherrell.android.bakingapp.Adapters.StepsAdapter;
 import com.ajsherrell.android.bakingapp.Models.Bakery;
-import com.ajsherrell.android.bakingapp.Models.Ingredients;
 import com.ajsherrell.android.bakingapp.Widget.WidgetService;
 
 import butterknife.BindView;
