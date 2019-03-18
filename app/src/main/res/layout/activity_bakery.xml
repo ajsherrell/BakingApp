@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/bakery_step_list"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
         android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.RecyclerView
@@ -14,10 +16,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:textAllCaps="true"
+        android:layout_weight="1"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption">
 
-        <include layout="@layout/ingredients_list"/>
 
     </android.support.v7.widget.RecyclerView>
 
-</android.support.v4.widget.NestedScrollView>
+</LinearLayout>

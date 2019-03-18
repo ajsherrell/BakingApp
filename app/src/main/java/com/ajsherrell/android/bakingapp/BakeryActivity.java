@@ -30,6 +30,7 @@ public class BakeryActivity extends AppCompatActivity {
     RecyclerView ingredientsRecyclerView;
 
     private Bakery bakery;
+   // public List<Ingredients> ingredients;
 
     // is two pane?
     private boolean twoPane;
@@ -42,6 +43,7 @@ public class BakeryActivity extends AppCompatActivity {
         Bundle bakeryBundle = getIntent().getExtras();
         if (bakeryBundle != null && bakeryBundle.containsKey(BAKERY_KEY)) {
             bakery = bakeryBundle.getParcelable(BAKERY_KEY);
+           // ingredients = bakeryBundle.getParcelable(BAKERY_KEY);
         } else {
             Toast.makeText(getApplicationContext(), "Bakery failure!", Toast.LENGTH_LONG).show();
             finish();
@@ -78,7 +80,7 @@ public class BakeryActivity extends AppCompatActivity {
         LinearLayoutManager ingredientsLayoutManager = new LinearLayoutManager(this);
         ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
         ingredientsRecyclerView.setNestedScrollingEnabled(false);
-        ingredientsRecyclerView.setAdapter(new IngredientsAdapter(bakery));
+        ingredientsRecyclerView.setAdapter(new IngredientsAdapter(getApplicationContext(), bakery.getIngredients()));
     }
 
     private void makeStep(int position) {

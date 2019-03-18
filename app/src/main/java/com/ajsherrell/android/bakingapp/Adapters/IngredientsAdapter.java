@@ -1,24 +1,27 @@
 package com.ajsherrell.android.bakingapp.Adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajsherrell.android.bakingapp.Models.Bakery;
+import com.ajsherrell.android.bakingapp.Models.Ingredients;
 import com.ajsherrell.android.bakingapp.R;
 import com.ajsherrell.android.bakingapp.ViewHolders.IngredientsViewHolder;
 
-import java.util.Locale;
+import java.util.List;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHolder> {
 
     private static final String TAG = IngredientsViewHolder.class.getSimpleName();
-    private Bakery bakery;
+    private Context context;
+    private List<Ingredients> ingredients;
 
-    public IngredientsAdapter(Bakery bakery) {
-        this.bakery = bakery;
+    public IngredientsAdapter(Context context, List<Ingredients> ingredients) {
+        this.context = context;
+        this.ingredients = ingredients;
     }
 
     @NonNull
@@ -31,22 +34,22 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
 
     @Override
     public void onBindViewHolder(@NonNull IngredientsViewHolder ingredientsViewHolder, final int i) {
-        IngredientsViewHolder viewHolder = (IngredientsViewHolder) ingredientsViewHolder;
-        String ingredientString = bakery.getIngredients().get(i).getIngredient();
-        String measure = bakery.getIngredients().get(i).getMeasure();
-        int quantity = bakery.getIngredients().get(i).getQuantity();
+        ingredientsViewHolder.mIngredientsTv.setText(ingredientsString(ingredientsViewHolder.getAdapterPosition()));
+    }
+
+    public String ingredientsString(int position) {
+        Ingredients ingList = ingredients.get(position);
+        String ingredientsString = ingList.getIngredient();
+        String measure = ingList.getMeasure();
+        int quantity = ingList.getQuantity();
         String measurement = trueMeasure(measure, quantity);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format(Locale.getDefault(), ingredientString, measurement));
-        if (i != bakery.getIngredients().size() - 1) {
-            stringBuilder.append("\n");
-        }
-        viewHolder.mIngredientsTv.setText(stringBuilder);
+        String recipeIngredients = ingredientsString + " " + String.valueOf(measurement) + "\n";
+        return recipeIngredients;
     }
 
     @Override
     public int getItemCount() {
-        return bakery.getIngredients().size();
+        return ingredients == null ? 0 : ingredients.size();
     }
 
     private String trueMeasure(String measure, int quantity) {
@@ -99,7 +102,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
                 }
                 return measurement;
             default:
-                return measure;
+                return measure + quantity;
         }
     }
 
