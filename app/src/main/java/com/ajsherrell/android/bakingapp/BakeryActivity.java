@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.ajsherrell.android.bakingapp.Adapters.IngredientsAdapter;
 import com.ajsherrell.android.bakingapp.Adapters.StepsAdapter;
 import com.ajsherrell.android.bakingapp.Models.Bakery;
-import com.ajsherrell.android.bakingapp.Models.Ingredients;
 import com.ajsherrell.android.bakingapp.Widget.WidgetService;
 
 import butterknife.BindView;
@@ -31,7 +30,6 @@ public class BakeryActivity extends AppCompatActivity {
     RecyclerView ingredientsRecyclerView;
 
     private Bakery bakery;
-    public Ingredients ingredients;
 
     // is two pane?
     private boolean twoPane;
@@ -70,6 +68,7 @@ public class BakeryActivity extends AppCompatActivity {
     private void setRecyclerView() {
         LinearLayoutManager bakeryLayoutManager = new LinearLayoutManager(this);
         bakeryRecyclerView.setLayoutManager(bakeryLayoutManager);
+        bakeryRecyclerView.setNestedScrollingEnabled(false);
         bakeryRecyclerView.setAdapter(new StepsAdapter(bakery, new Constants.ClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -78,7 +77,8 @@ public class BakeryActivity extends AppCompatActivity {
         }));
         LinearLayoutManager ingredientsLayoutManager = new LinearLayoutManager(this);
         ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
-        ingredientsRecyclerView.setAdapter(new IngredientsAdapter(getApplicationContext(), ingredients));
+        ingredientsRecyclerView.setNestedScrollingEnabled(false);
+        ingredientsRecyclerView.setAdapter(new IngredientsAdapter(bakery));
     }
 
     private void makeStep(int position) {
