@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ajsherrell.android.bakingapp.Models.Steps;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
@@ -26,7 +28,6 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,10 +80,14 @@ public class StepsFragment extends Fragment {
         stepsTv.setText(steps.getDescription());
 
         // check if thumbnail exists
+        // used resource: https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library
         if (!TextUtils.isEmpty(steps.getThumbnailUrl())) {
-            Picasso.with(getContext())
+            GlideApp.with(this)
                     .load(steps.getThumbnailUrl())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .transform(new CircleCrop())
                     .placeholder(R.drawable.ic_action_name)
+                    .error(R.drawable.ic_action_name)
                     .into(stepThumbnail);
         }
 

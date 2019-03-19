@@ -23,6 +23,7 @@ public class Constants {
         }
     }
 
+
     // use shared preferences for widget
     public static class WidgetPref {
 

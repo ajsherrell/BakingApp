@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ajsherrell.android.bakingapp.Constants;
+import com.ajsherrell.android.bakingapp.GlideApp;
 import com.ajsherrell.android.bakingapp.Models.Bakery;
 import com.ajsherrell.android.bakingapp.R;
 import com.ajsherrell.android.bakingapp.ViewHolders.BakeryViewHolder;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,9 +45,10 @@ public class BakeryAdapter extends RecyclerView.Adapter<BakeryViewHolder> {
         bakeryViewHolder.mServingsTv.setText(context.getString(R.string.serves) + bakery.get(i).getServings());
 
         if (!TextUtils.isEmpty(bakery.get(i).getImage())) {
-            Picasso.with(context)
+            GlideApp.with(context)
                     .load(bakery.get(i).getImage())
                     .placeholder(R.drawable.ic_action_name)
+                    .error(R.drawable.ic_action_name)
                     .into(bakeryViewHolder.bakeryImage);
         }
 
