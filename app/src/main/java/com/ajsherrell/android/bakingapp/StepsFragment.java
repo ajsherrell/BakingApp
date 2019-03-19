@@ -81,15 +81,15 @@ public class StepsFragment extends Fragment {
 
         // check if thumbnail exists
         // used resource: https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library
-        if (!TextUtils.isEmpty(steps.getThumbnailUrl())) {
-            GlideApp.with(this)
-                    .load(steps.getThumbnailUrl())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .transform(new CircleCrop())
-                    .placeholder(R.drawable.ic_action_name)
-                    .error(R.drawable.ic_action_name)
-                    .into(stepThumbnail);
-        }
+
+        GlideApp.with(this)
+                .load(steps.getThumbnailUrl())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .transform(new CircleCrop())
+                .placeholder(R.drawable.ic_action_name)
+                .error(R.drawable.ic_action_name)
+                .into(stepThumbnail);
+
 
         return view;
     }

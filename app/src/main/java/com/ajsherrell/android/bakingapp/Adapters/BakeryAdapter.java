@@ -3,7 +3,6 @@ package com.ajsherrell.android.bakingapp.Adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +13,8 @@ import com.ajsherrell.android.bakingapp.GlideApp;
 import com.ajsherrell.android.bakingapp.Models.Bakery;
 import com.ajsherrell.android.bakingapp.R;
 import com.ajsherrell.android.bakingapp.ViewHolders.BakeryViewHolder;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 import java.util.List;
 
@@ -44,13 +45,15 @@ public class BakeryAdapter extends RecyclerView.Adapter<BakeryViewHolder> {
         bakeryViewHolder.mBakeryNameTv.setText(bakery.get(i).getName());
         bakeryViewHolder.mServingsTv.setText(context.getString(R.string.serves) + bakery.get(i).getServings());
 
-        if (!TextUtils.isEmpty(bakery.get(i).getImage())) {
-            GlideApp.with(context)
-                    .load(bakery.get(i).getImage())
-                    .placeholder(R.drawable.ic_action_name)
-                    .error(R.drawable.ic_action_name)
-                    .into(bakeryViewHolder.bakeryImage);
-        }
+
+        GlideApp.with(context)
+                .load(bakery.get(i).getImage())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .transform(new CircleCrop())
+                .placeholder(R.drawable.ic_action_name)
+                .error(R.drawable.ic_action_name)
+                .into(bakeryViewHolder.bakeryImage);
+
 
         bakeryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
