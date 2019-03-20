@@ -79,25 +79,42 @@ public class StepsFragment extends Fragment {
 
         stepsTv.setText(steps.getDescription());
 
-        // check if thumbnail exists
         // used resource: https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library
-
-        GlideApp.with(this)
-                .load(steps.getThumbnailUrl())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .transform(new CircleCrop())
-                .placeholder(R.drawable.ic_action_name)
-                .error(R.drawable.ic_action_name)
-                .into(stepThumbnail);
-
+        if (steps.getThumbnailUrl().isEmpty() || steps.getThumbnailUrl() == null) {
+            GlideApp.with(this)
+                    .load(steps.getThumbnailUrl())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .transform(new CircleCrop())
+                    .placeholder(R.drawable.ic_action_name)
+                    .error(R.drawable.ic_action_name)
+                    .into(stepThumbnail);
+        } else {
+            GlideApp.with(this)
+                    .load(steps.getThumbnailUrl())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .transform(new CircleCrop())
+                    .placeholder(R.drawable.ic_action_name)
+                    .error(R.drawable.ic_action_name)
+                    .into(stepThumbnail);
+        }
 
         return view;
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (!TextUtils.isEmpty(steps.getVideoUrl()) && Util.SDK_INT > 23) {
+            startPlay(Uri.parse(steps.getVideoUrl()));
+        } else {
+            stepsTv.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        if (!TextUtils.isEmpty(steps.getVideoUrl())) {
+        if (!TextUtils.isEmpty(steps.getVideoUrl()) && Util.SDK_INT <= 23) {
             startPlay(Uri.parse(steps.getVideoUrl()));
         } else {
             stepsTv.setVisibility(View.VISIBLE);
@@ -107,6 +124,12 @@ public class StepsFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        releasePlayer();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
         releasePlayer();
     }
 

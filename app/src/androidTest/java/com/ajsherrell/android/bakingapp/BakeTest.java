@@ -37,7 +37,7 @@ public class BakeTest extends IdlingResourceMenuActivityTest {
     public void RvClickedStepOpened() {
         RecycleTest.BakeryRecycler(0);
 
-        onView(withId(R.id.ingredients_tv))
+        onView(withId(R.id.ingredients_list_rv))
                 .check(matches(isDisplayed()));
 
         onView(withId(R.id.bakery_step_list))

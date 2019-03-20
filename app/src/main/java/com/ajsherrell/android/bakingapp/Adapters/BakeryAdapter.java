@@ -45,15 +45,23 @@ public class BakeryAdapter extends RecyclerView.Adapter<BakeryViewHolder> {
         bakeryViewHolder.mBakeryNameTv.setText(bakery.get(i).getName());
         bakeryViewHolder.mServingsTv.setText(context.getString(R.string.serves) + bakery.get(i).getServings());
 
-
-        GlideApp.with(context)
-                .load(bakery.get(i).getImage())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .transform(new CircleCrop())
-                .placeholder(R.drawable.ic_action_name)
-                .error(R.drawable.ic_action_name)
-                .into(bakeryViewHolder.bakeryImage);
-
+        if (bakery.get(i).getImage().isEmpty() || bakery.get(i).getImage() == null) {
+            GlideApp.with(context)
+                    .load(bakery.get(i).getImage())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .transform(new CircleCrop())
+                    .placeholder(R.drawable.ic_action_name)
+                    .error(R.drawable.ic_action_name)
+                    .into(bakeryViewHolder.bakeryImage);
+        } else {
+            GlideApp.with(context)
+                    .load(bakery.get(i).getImage())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .transform(new CircleCrop())
+                    .placeholder(R.drawable.ic_action_name)
+                    .error(R.drawable.ic_action_name)
+                    .into(bakeryViewHolder.bakeryImage);
+        }
 
         bakeryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

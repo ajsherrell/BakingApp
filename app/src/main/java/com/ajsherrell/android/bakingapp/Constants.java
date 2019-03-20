@@ -32,7 +32,7 @@ public class Constants {
         public static void saveBake(Context context, Bakery bakery) {
             SharedPreferences.Editor widgetPrefs = context.getSharedPreferences(PREFERENCE_NAME,
                     Context.MODE_PRIVATE).edit();
-            widgetPrefs.putString(context.getString(R.string.widget_key), bakery.toString());
+            widgetPrefs.putString(context.getString(R.string.widget_key), String.valueOf(bakery.getIngredients())); // was toString()
             widgetPrefs.apply();
         }
 

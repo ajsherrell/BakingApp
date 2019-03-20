@@ -10,6 +10,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -152,7 +153,14 @@ public class BakeryFragment extends Fragment {
         bakeryRecyclerView.setVisibility(View.GONE);
         bakeryRecyclerView.setHasFixedSize(true);
 
-        bakeryRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        boolean twoPane = getResources().getBoolean(R.bool.isTwoPane);
+        if (!twoPane) {
+            bakeryRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        } else {
+            bakeryRecyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
+        }
+
+
         bakeryRecyclerView.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener());
     }
 
