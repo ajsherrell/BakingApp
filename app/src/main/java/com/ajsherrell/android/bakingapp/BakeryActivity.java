@@ -30,7 +30,6 @@ public class BakeryActivity extends AppCompatActivity {
     RecyclerView ingredientsRecyclerView;
 
     private Bakery bakery;
-   // public List<Ingredients> ingredients;
 
     // is two pane?
     private boolean twoPane;
