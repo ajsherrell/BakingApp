@@ -58,7 +58,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
         String measure = ingList.getMeasure();
         int quantity = ingList.getQuantity();
         String measurement = trueMeasure(measure, quantity);
-        String recipeIngredients = ingredientsString + " " + String.valueOf(measurement) + "\n";
+        String recipeIngredients = ingredientsString + " " + measurement + "\n";
         return recipeIngredients;
     }
 
@@ -73,47 +73,51 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
         switch (measure) {
             case "G":
                 if (quantity > 1.0) {
-                    measurement = "grams";
+                    measurement = "grams" + " " + String.valueOf(quantity);
                 } else {
-                    measurement = "gram";
+                    measurement = "gram" + " " + String.valueOf(quantity);
                 }
                 return measurement;
             case "UNIT":
-                measurement = "";
+                if (quantity > 1) {
+                    measurement = "units" + " " + String.valueOf(quantity);
+                } else {
+                    measurement = "unit" + " " + String.valueOf(quantity);
+                }
                 return measurement;
             case "TBLSP":
                 if (quantity > 1.0) {
-                    measurement = "tablespoons";
+                    measurement = "tablespoons" + " " + String.valueOf(quantity);
                 } else {
-                    measurement = "tablespoon";
+                    measurement = "tablespoon" + " " + String.valueOf(quantity);
                 }
                 return measurement;
             case "TSP":
                 if (quantity > 1.0) {
-                    measurement = "teaspoons";
+                    measurement = "teaspoons" + " " + String.valueOf(quantity);
                 } else {
-                    measurement = "teaspoon";
+                    measurement = "teaspoon" + " " + String.valueOf(quantity);
                 }
                 return measurement;
             case "CUP":
                 if (quantity > 1.0) {
-                    measurement = "cups";
+                    measurement = "cups" + " " + String.valueOf(quantity);
                 } else {
-                    measurement = "cup";
+                    measurement = "cup" + " " + String.valueOf(quantity);
                 }
                 return measurement;
             case "K":
                 if (quantity > 1.0) {
-                    measurement = "kilograms";
+                    measurement = "kilograms" + " " + String.valueOf(quantity);
                 } else {
-                    measurement = "kilogram";
+                    measurement = "kilogram" + " " + String.valueOf(quantity);
                 }
                 return measurement;
             case "OZ":
                 if (quantity > 1.0) {
-                    measurement = "ounces";
+                    measurement = "ounces" + " " + String.valueOf(quantity);
                 } else {
-                    measurement = "ounce";
+                    measurement = "ounce" + " " + String.valueOf(quantity);
                 }
                 return measurement;
             default:
