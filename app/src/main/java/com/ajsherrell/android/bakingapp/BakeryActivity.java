@@ -18,6 +18,7 @@ package com.ajsherrell.android.bakingapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -57,7 +58,6 @@ public class BakeryActivity extends AppCompatActivity {
         Bundle bakeryBundle = getIntent().getExtras();
         if (bakeryBundle != null && bakeryBundle.containsKey(BAKERY_KEY)) {
             bakery = bakeryBundle.getParcelable(BAKERY_KEY);
-           // ingredients = bakeryBundle.getParcelable(BAKERY_KEY);
         } else {
             Toast.makeText(getApplicationContext(), "Bakery failure!", Toast.LENGTH_LONG).show();
             finish();
@@ -72,6 +72,13 @@ public class BakeryActivity extends AppCompatActivity {
                 makeStep(0);
             }
         }
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(bakery.getName());
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         setRecyclerView();
     }
 
