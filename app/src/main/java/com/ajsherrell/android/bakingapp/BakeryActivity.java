@@ -91,7 +91,6 @@ public class BakeryActivity extends AppCompatActivity {
     private void setRecyclerView() {
         LinearLayoutManager bakeryLayoutManager = new LinearLayoutManager(this);
         bakeryRecyclerView.setLayoutManager(bakeryLayoutManager);
-        bakeryRecyclerView.setNestedScrollingEnabled(false);
         bakeryRecyclerView.setAdapter(new StepsAdapter(bakery, new Constants.ClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {

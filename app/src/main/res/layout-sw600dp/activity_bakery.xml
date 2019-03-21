@@ -22,26 +22,32 @@
 
     <!--two pane layout-->
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/bakery_step_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bakery_step_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/ingredients_list_rv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            app:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorPrimaryLight"/>
 
-
-        </android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ingredients_list_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        app:textAllCaps="true"
+        android:layout_weight="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption">
+    </android.support.v7.widget.RecyclerView>
 
 
     <FrameLayout
         android:id="@+id/tablet_container"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
 </LinearLayout>

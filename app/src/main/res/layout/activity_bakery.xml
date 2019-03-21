@@ -39,8 +39,6 @@
         app:textAllCaps="true"
         android:layout_weight="1"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption">
-
-
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
