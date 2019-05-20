@@ -10,6 +10,15 @@ user can also add a home screen widget.
 - Jackson
 - Glide
 - Retrofit
+- Espresso
+- Json
+
+## Implementations
+- RecyclerView
+- CardView
+- ViewHolder
+- Fragments
+- Pager Adapter
 
 
 
